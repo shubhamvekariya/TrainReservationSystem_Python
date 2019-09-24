@@ -1,6 +1,6 @@
 # Train Reservation System
 
-This project was in php. In which we use HTML, CSS, Bootstrap, Javascript and MySQL.
+This project was in Python. In which we use HTML, CSS, Bootstrap, Javascript and MySQL.
 
 ## Project Description
 
@@ -24,4 +24,4 @@ To get more help on please contact our devloper team.
 | Vipul vyas | vipulvyas0813@gmail.com |
 | Keval Talaviya | kevaltalaviya122@gmail.com |
 
-Code are available on :- [https://github.com/shubhamvekariya/TrainReservationSystem_PHP](https://github.com/shubhamvekariya/TrainReservationSystem_PHP)
+Code are available on :- [https://github.com/shubhamvekariya/TrainReservationSystem_Python](https://github.com/shubhamvekariya/TrainReservationSystem_Python)
