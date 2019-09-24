@@ -1,0 +1,313 @@
+{% extends 'header.html' %}
+{% block content %}
+<html>
+<head>
+	<title>Home Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+		body{
+			background-image: url('/static/images/login.jpg');
+			background-repeat:no-repeat;
+			background-size:100%;
+			margin:0;
+		}
+		.box1{
+			padding-bottom:20px;
+		}
+		#a1{
+			color:black;
+			padding-right:30px;
+			type:button;
+			color:black;
+
+			
+		}
+		#a1:active , a1:hover{
+		 	border-bottom:6px;
+			border-bottom-color:orange;
+			background-color:yellow;
+			color:blue;
+
+
+		}
+		#a1:hover{
+		 	border-bottom:6px;
+			border-bottom-color:orange;
+			background-color:yellow;
+			color:blue;
+			transition-duration:0.4s;
+			
+
+		}
+		#a1:visited{
+		 	border-bottom:6px;
+			border-bottom-color:orange;
+			background-color:yellow;
+			color:blue;
+
+
+		}
+		.button{
+			background-color:yellow;
+			height:37px;
+			width:65%;
+			color:black;
+			text-align: center;
+                        text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			font-weight:700;
+			border-radius:8px;
+			float:right;
+			margin:20px 5px 10px 50px;
+			padding:7px 30px;
+			text-align:center;
+			transition-duration:0.4s;
+		}
+		.button:hover{
+			color:blue;
+		}
+		#fbg{
+			background-color:#eee;
+			
+			margin:0% 2%;
+			border-radius:5px;
+			padding:2% 2% ;
+			
+		} 
+		.btn {
+			  border: none;
+		          
+			  padding: 14px 28px;
+			  font-size: 16px;
+			  color:orange;
+			  cursor: pointer;
+			  display: inline-block;
+			  transition-duration:0.6s;
+			}
+	.btn:hover{
+		color:blue;
+		font-weight:700;
+	}
+	.wrapper { 
+	  display: grid; 
+	  grid-template-columns: repeat(4, 1fr); 
+	  grid-auto-rows: 17px;
+	} 
+
+	.box4 { 
+	  grid-column-start: 4;
+	grid-column-end:5;  
+	  grid-row-start: 1; 
+	  grid-row-end: 4; 
+	}
+	.box5{
+		  grid-column-start: 1;
+	grid-column-end:2;  
+	  grid-row-start: 2; 
+	  grid-row-end: 4; 
+	  
+	}
+	.box6{
+		  grid-column-start: 2;
+	grid-column-end:3;  
+	  grid-row-start: 2; 
+	  grid-row-end: 4; 
+	}
+	.i1{
+		padding:7px 20px;
+		margin:7px 15px 7px 1px;
+		border-radius:8px;
+	}
+	.i2{
+		padding:7px 20px;
+		margin:7px 15px 7px 1px;
+		border-radius:8px;
+
+	}
+	.i3{
+		padding:5px 20px;
+		padding-right:40%;
+		margin:7px 15px 7px 1px;
+		border-radius:8px;
+
+	}
+	
+	.box7{
+		  grid-column-start: 3;
+	grid-column-end:4;  
+	  grid-row-start: 2; 
+	  grid-row-end: 4; 
+	 
+	}
+	.wrapper1 {
+	  display: grid;
+	  grid-template-columns: 1fr 1fr 1fr;
+	  
+	}
+	.c1{
+		background-color:#eee;
+		border-radius:5px;
+		box-shadow:0px 8px 160px 0px;
+
+	}
+	#title1{
+	   width:100%;
+	   text-align:center;
+	   font-size:28px;
+	   margin:10px 0px;
+
+	}
+
+
+	
+	#d1{
+		font-size:20px;
+		
+	}
+
+	.c1{
+	margin:2% 2%;
+	}
+	.alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+		width: 50%;
+        }
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+
+
+</style>
+
+</head>
+<body >
+			{% if error %}
+				<div class=alert><span class=closebtn onclick="this.parentElement.style.display='none'">&times;</span>
+                                   <strong>{{ error }} </strong></div>'
+			{% endif %}
+		<div style="margin-top:8%">
+		<div style="overflow-x:auto">
+			<table>
+				<tr>
+					<td id=a1><button class="btn 1" onclick="searchTrain()"><b>SEARCH TRAINS</b></button></td>
+					<td id=a1><button class="btn 2" onclick="pnrStatus()"><b> PNR STATUS ENQUIRY</b></button></td>
+					<td id=a1><button class="btn 2" onclick="liveStatus()"><b> LIVE TRAIN STATUS </b></button></td>
+					<td id=a1><button class="btn 1" onclick="cancelTicket()"><b>CANCEL TICKET</b></button></td>
+				</tr>
+			</table>
+
+		</div>
+	</div>    
+    
+	<div id=a2>
+		<fieldset id =fbg>
+		<form action="/booking/showtrain/" method="POST">
+			{% csrf_token %}
+		<div class="wrapper">
+			<div class="box1">&#128649; From</div>
+			<div class="box2">&#128649; To</div>
+			<div class="box3">&#128197; Date</div>
+			<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>
+			<div class="box5"><input type="text" name="departcity" class=i1 placeholder="Leaving form" size="15%" required /></div>
+			<div class="box6"><input type="text" name="arrivedcity" class=i2 placeholder="Going to" size="15%" required /></div>
+			<div class="box7"><input type="date" name="date" class=i3 size="15%" required /></div>
+		</div>
+		</form>
+		</fieldset>
+	</div>
+        <fieldset class=c1>
+	   <div id=title1>SPECIAL TRAINS<hr/></div>
+
+		<div class="wrapper1" align="middle">
+			 <div class="b1"><img src="/static/images/rajdhani.jpg"/>
+				  <div><div id=d1>Rajdhani</div>
+				  <div>High speed train that connect new delhi to other destination.</div>
+			</div>
+		</div>
+				   
+				<div class="b2"><img src="/static/images/shatabdi.jpg"/>
+					<div><div id=d1>Shatabdi</div>
+					<div>Day train connecting Metro cities  with other destination.</div>
+				</div>
+				</div>
+				
+				<div class="b3"><img src="/static/images/garibrath.jpg" />
+					<div><div id=d1>Garib Rath</div>
+					<div>Long distance, affordable, no-frills and air conditioned trains.</div>
+
+				</div>
+				</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+         function searchTrain(){
+         var line ='<form action="/booking/showtrain/" method="POST">';
+         line += '{% csrf_token %}';
+		 line += '<div class="wrapper">';
+		 line += '<div class="box1">&#128649; From</div>';
+		 line += '<div class="box2">&#128649; To </div>';
+		 line += '<div class="box3">&#128197; Date</div>';
+		 line += '<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>';
+		 line += '<div class="box5"><input type="text" name="departcity" class=i1 placeholder="Leaving form" size="15%" required ></div>';
+		 line += '<div class="box6"><input type="text" name="arrivedcity" class=i2 placeholder="Going to" size="15%" required ></div>';
+		 line += '<div class="box7"><input type="date" name="date" class=i3 size="15%" required ></div>';
+		 line += '</div>';
+		 line += '</form>';
+		 document.getElementById('fbg').innerHTML = line ;
+         }
+         function pnrStatus(){
+         var line ='<form action="/status/pnrstatus/" method="POST">';
+		 line += '{% csrf_token %}';
+		 line += '<div class="wrapper">';
+		 line += '<div class="box1">&#128648; Enter PNR Number</div>';
+		 line += '<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>';
+		 line += '<div class="box5"><input type="text" name="pnrno" class=i1 size="20" required ></div>';
+		 line += '</div>';
+		 line += '</form>';
+		 document.getElementById('fbg').innerHTML = line ;
+         }
+         function liveStatus(){
+         var line ='<form action="/status/livestatus/" method="POST">';
+		 line += '{% csrf_token %}';
+		 line += '<div class="wrapper">';
+		 line += '<div class="box1">&#128648; Enter PNR Number</div>';
+		 line += '<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>';
+		 line += '<div class="box5"><input type="text" name="pnrno" class=i1 size="20" required ></div>';
+		 line += '</div>';
+		 line += '</form>';
+		 document.getElementById('fbg').innerHTML = line ;
+         }
+     function cancelTicket(){
+         var line ='<form action="/booking/cancelticket/" method="POST">';
+		 line += '{% csrf_token %}';
+		 line += '<div class="wrapper">';
+		 line += '<div class="box1">&#128648; Enter PNR Number</div>';
+		 line += '<div class="box2">&#128102; Enter Number Of Passenger</div>';
+		 line += '<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>';
+		 line += '<div class="box5"><input type="text" name="pnrno" class=i1 size="20" required ></div>';
+		 line += '<div class="box6"><input name="noofpassenger" type="number" class=i1 min="1" max="10" style="width: 100%;" value="1" required /></div>';
+		 line += '</div>';
+		 line += '</form>';
+		 document.getElementById('fbg').innerHTML = line ;
+         }
+</script>
+</body>
+</html>
+{% endblock %}
